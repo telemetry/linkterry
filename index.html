@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkterry - Terrence Gillespie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+<style>
+
+@font-face {
+  font-family: "BelmonteBallpoint-Print";
+  src: url("fonts/BelmonteBallpoint-Print.woff") format('woff');
+  font-weight: 100;
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+
+    ::-moz-selection {
+      /* Code for Firefox */
+      color: whitesmoke;
+      background: palevioletred;
+    }
+
+    ::selection {
+      /* color: whitesmoke; */
+      background: palevioletred;
+    }
+
+    /* Remove default margin */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul,
+    figure,
+    blockquote,
+    dl,
+    dd {
+      margin: 0;
+    }
+
+    /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+    ul[role="list"],
+    ol[role="list"] {
+      list-style: none;
+    }
+
+    /* Set core root defaults */
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+
+    .geist-400 {
+    font-family: "Geist", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    }
+
+    /* Set core body defaults */
+    body {
+      min-height: 100vh;
+      /* text-rendering: optimizeSpeed; */
+      line-height: 1.5;
+      background-image:
+        linear-gradient(to bottom, rgb(255, 255, 255) 0px, rgba(255, 255, 255, 0) 100%),
+        linear-gradient(to right, rgba(105, 0, 243, 0.08) 0px, rgba(28, 248, 116, 0.08) 100%);
+      ;
+    }
+
+    /* A elements that don't have a class get default styles */
+    a:not([class]) {
+      text-decoration-skip-ink: auto;
+    }
+
+    /* Make images easier to work with */
+    img,
+    picture {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Inherit fonts for inputs and buttons */
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    /* Remove all animations and transitions for people that prefer not to see them */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    body {
+      font-family: "Geist", -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+      color: #0a131d;
+      padding: 50px 20px;
+      max-width: 390px;
+      margin: 0 auto;
+    }
+
+    section{
+        margin-top: 16px;
+    }
+
+    h3{
+        text-transform: uppercase;
+        font-size: 12px;
+        color: #0a131d;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    ul {
+    padding: 0;
+    list-style-type: none;
+    }
+
+    li{
+        font-size: 20px;
+        line-height: 44px;
+    }
+
+    
+
+    .circle {
+            width: 80px;
+            height: 80px;
+            background-color: #190CD6;
+            border-radius: 50%;
+            margin-bottom: 16px;
+        }
+
+    .handwritten {
+        font-family: BelmonteBallpoint-Print;
+        font-weight: 50;
+        color: #190CD6;
+        font-size: 40px;
+    }
+
+    .colophon{
+        margin-top:12px;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    a:hover{
+        background-color: aqua;
+    }
+
+    a:visited{
+        color: #190CD6;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="circle"></div>
+<h1 class="handwritten">Terrence Gillespie</h1>
+<section>
+<h3>Social</h3>
+<ul>
+    <li><a href="https://bsky.app/profile/tezjnr.com" target="_blank">bluesky</a></li>
+    <li><a href="https://github.com/telemetry" target="_blank">github</a></li>
+    <li><a href="https://www.linkedin.com/in/tezjnr/" target="_blank">linkedin</a></li>
+    <li><a href="https://www.instagram.com/tezjnr/" target="_blank">instagram</a></li>
+</ul>
+</section>
+<section>
+<h3>Projects</h3>
+<ul>
+    <li><a href="https://recently.co" target="_blank">Recently</a></li>
+    <li><a href="https://sloooow.app" target="_blank">sloooow</a></li>
+    <li><a href="https://duodecimal.co" target="_blank">duodecimal</a></li>
+</ul>
+</section>
+<section>
+<h3>Personal</h3>
+<ul>
+    <li><a href="https://terrygillespie.com" target="_blank">website</a></li>
+    <li><a href="https://smallvictories.com.au" target="_blank">photography</a></li>
+</ul>
+</section>
+<section>
+<h3>Colophon</h3>
+<p class="colophon">This linkterry is a directory of places I frequent on the internet. The page is typeset using <a href="https://vercel.com/font" target="_blank">Geist</a> from <a href="https://vercel.com" target="_blank">Vercel</a> and <a href="https://typeheist.co/font/belmonte-ballpoint/" target="_blank">Belmonte Ballpoint</a> created by <a href="https://www.lauraeddy.com.au/" target="_blank">Laura Eddy</a>. Tap the dot to set the accent colour of this page. Thank you for visiting.
+T. ☮
+</p>
+</section>
+</body>
+</html>
