@@ -20,6 +20,16 @@
 }
 
 
+#dot {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: grey;
+      margin: 100px auto;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
 
     /* Box sizing rules */
     *,
@@ -185,7 +195,7 @@
   </style>
 </head>
 <body>
-    <div class="circle"></div>
+  <div id="dot"></div>
 <h1 class="handwritten">Terrence Gillespie</h1>
 <section>
 <h3>Social</h3>
@@ -217,5 +227,31 @@
 T. ☮
 </p>
 </section>
+<script>
+  const dot = document.getElementById('dot');
+  // Connect to the WebSocket server (adjust the URL/port as needed)
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+const socket = new WebSocket(`${protocol}//${window.location.host}`);
+
+
+  socket.addEventListener('open', () => {
+    console.log('Connected to WebSocket server');
+  });
+
+  // Listen for messages from the server
+  socket.addEventListener('message', (event) => {
+    const data = JSON.parse(event.data);
+    if(data.type === 'updateColor') {
+      dot.style.backgroundColor = data.color;
+    }
+  });
+
+  // When the dot is clicked, choose a random color and send it to the server
+  dot.addEventListener('click', () => {
+    const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+    dot.style.backgroundColor = randomColor;
+    socket.send(JSON.stringify({ type: 'updateColor', color: randomColor }));
+  });
+</script>
 </body>
 </html>
