@@ -1,26 +1,25 @@
-const WebSocket = require('ws');
-const http = require('http');
 const express = require('express');
 const path = require('path');
+const http = require('http');
+const WebSocket = require('ws');
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-// Serve static files from the "public" folder
+// Serve static files from "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Ensure root URL loads index.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-
-// Create an HTTP server and attach Express
+// Create HTTP server
 const server = http.createServer(app);
 
-// Attach WebSocket server to the HTTP server
+// WebSocket setup
 const wss = new WebSocket.Server({ server });
 
-// Store the current dot color
 let currentColor = 'grey';
 
 wss.on('connection', (ws) => {
@@ -39,7 +38,7 @@ wss.on('connection', (ws) => {
   });
 });
 
-// Start the server
+// Start server
 server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
