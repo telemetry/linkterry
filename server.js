@@ -9,6 +9,11 @@ const port = process.env.PORT || 8080;
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
 // Create an HTTP server and attach Express
 const server = http.createServer(app);
 
