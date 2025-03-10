@@ -1,5 +1,16 @@
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8080 });
+const http = require('http');
+
+const port = process.env.PORT || 8080;
+
+// Create an HTTP server
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('WebSocket server is running\n');
+});
+
+// Attach the WebSocket server to the HTTP server
+const wss = new WebSocket.Server({ server });
 
 // This variable holds the current dot color
 let currentColor = 'grey';
@@ -10,7 +21,7 @@ wss.on('connection', (ws) => {
 
   ws.on('message', (message) => {
     const data = JSON.parse(message);
-    if(data.type === 'updateColor') {
+    if (data.type === 'updateColor') {
       currentColor = data.color;
       // Broadcast the updated color to all connected clients
       wss.clients.forEach((client) => {
@@ -22,4 +33,7 @@ wss.on('connection', (ws) => {
   });
 });
 
-console.log('WebSocket server is running on ws://localhost:8080');
+// Start the HTTP server using the appropriate port
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
