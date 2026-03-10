@@ -10,7 +10,7 @@
   <style>
     /* Define a CSS variable for the accent color */
     :root {
-      --accent-color: #190CD6;
+      --accent-color: grey;
     }
 
     @font-face {
@@ -190,32 +190,44 @@
       T. ☮
     </p>
   </section>
-  <script>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6Z-z71u1sZNxLvQXsA9j7NCQK50rxHIM",
+      authDomain: "duodecimal-ac2cf.firebaseapp.com",
+      databaseURL: "https://duodecimal-ac2cf-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "duodecimal-ac2cf",
+      storageBucket: "duodecimal-ac2cf.appspot.com",
+      messagingSenderId: "1010762609782",
+      appId: "1:1010762609782:web:9baf83240dfd88ccf79b57",
+      measurementId: "G-TNGEGC4L0Q"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const accentRef = doc(db, 'linkterry', 'accent');
+
     const dot = document.getElementById('dot');
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const socket = new WebSocket(`${protocol}//${window.location.host}`);
 
-    socket.addEventListener('open', () => {
-      console.log('Connected to WebSocket server');
-    });
+    function setAccentColor(color) {
+      dot.style.backgroundColor = color;
+      document.documentElement.style.setProperty('--accent-color', color);
+    }
 
-    // Update accent color on receiving a new value
-    socket.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === 'updateColor') {
-        // Update the dot's color
-        dot.style.backgroundColor = data.color;
-        // Update the CSS variable for accent color
-        document.documentElement.style.setProperty('--accent-color', data.color);
+    // Listen for real-time color changes from Firestore
+    onSnapshot(accentRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setAccentColor(snapshot.data().color);
       }
     });
 
-    // When the dot is clicked, pick a random color and update it across the page
+    // When the dot is clicked, pick a random color and save to Firestore
     dot.addEventListener('click', () => {
-      const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-      dot.style.backgroundColor = randomColor;
-      document.documentElement.style.setProperty('--accent-color', randomColor);
-      socket.send(JSON.stringify({ type: 'updateColor', color: randomColor }));
+      const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+      setAccentColor(randomColor);
+      setDoc(accentRef, { color: randomColor });
     });
   </script>
 </body>
